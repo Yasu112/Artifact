@@ -20,6 +20,7 @@
                 </div>
             @endforeach
             
+
         </div>
         
         <div class='paginate'>
@@ -27,8 +28,20 @@
         </div>
         
         <h2 class='title'>
-            <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+
+            @foreach ($posts as $post)
+                
+                    <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                
+            @endforeach
+            
         </h2>
         
-    </body>
+        [<a href='/posts/create'>create</a>]
+        
+
+            
+        </h2>
+        
+
 </html>
