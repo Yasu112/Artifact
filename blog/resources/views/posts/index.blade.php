@@ -17,6 +17,12 @@
                 <div class='post'>
                     <h2 class='title'>{{ $post->title }}</h2>
                     <p class='body'>{{ $post->body }}</p>
+                    
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">delete</button> 
+                    </form>
                 </div>
             @endforeach
             
@@ -37,11 +43,12 @@
             
         </h2>
         
-        [<a href='/posts/create'>create</a>]
-        
-
-            
+        <h2>
+            [<a href='/posts/create'>create</a>]
         </h2>
         
+        
+        
+    </body>
 
 </html>
