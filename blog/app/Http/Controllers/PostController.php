@@ -10,17 +10,15 @@ use App\Http\Requests\PostRequest;
 class PostController extends Controller
 {
     /**
- * Post一覧を表示する
- * 
- * @param Post Postモデル
- * @return array Postモデルリスト
- */
+     * Post一覧を表示する
+     * 
+     * @param Post Postモデル
+     * @return array Postモデルリスト
+     */
  
     public function index(Post $post){
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);  
-
     }
-   
     
     /**
     * 特定IDのpostを表示する
@@ -37,6 +35,16 @@ class PostController extends Controller
     }
     
     public function store(PostRequest $request, Post $post){
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
+    
+    public function edit(Post $post){
+        return view('posts/edit')->with(['post' => $post]);
+    }
+    
+    public function update(PostRequest $request, Post $post){
         $input = $request['post'];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
